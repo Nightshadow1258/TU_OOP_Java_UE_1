@@ -5,8 +5,6 @@
 
 package domain;
 
-import domain.product.Product;
-
 public class Table extends Object {
 
 	//An identifier as text

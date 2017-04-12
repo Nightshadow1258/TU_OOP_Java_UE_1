@@ -5,11 +5,9 @@
 
 package domain;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import domain.product.IProduct;
-import domain.product.Product;
 import domain.record.Record;
 import ict.basics.IDeepCopy;
 
