@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 import domain.product.IProduct;
-import domain.product.JointProduct;
 import domain.product.Product;
 import domain.product.SimpleProduct;
+import domain.product.JointProduct;
+import domain.product.ExtendedProduct;
+
 import domain.Table;
 import domain.Order;
 
@@ -210,10 +213,55 @@ public class Restaurant {
 
 	public static void main(String[] args){
 		
+		boolean end = true;
 		Restaurant rest1 = new Restaurant("Test_Restaurant");
 		System.out.println(rest1.generateJointProducts());
+		
+		//5xSimpleProduct:
+		rest1.Li_Pro.add(new SimpleProduct("Fleischlaberl", (float) 4.90));
+		rest1.Li_Pro.add(new SimpleProduct("Bananenmilchshake", (float) 2.50));
+		rest1.Li_Pro.add(new SimpleProduct("Schokomilchshake", (float) 2.50));
+		rest1.Li_Pro.add(new SimpleProduct("Risotto", (float) 5.90));
+		rest1.Li_Pro.add(new SimpleProduct("Spaghetti Bolognese", (float) 5.90));
+		
+		//5xExtendedProduct:
+		rest1.Li_Pro.add(new ExtendedProduct("Marmelade Brot", (float) 3.50));
+		rest1.Li_Pro.add(new ExtendedProduct("Tiramesu", (float) 2.50));
+		rest1.Li_Pro.add(new ExtendedProduct("Milcheis", (float) 1.50));
+		rest1.Li_Pro.add(new ExtendedProduct("200g Steak", (float) 9.90));
+		rest1.Li_Pro.add(new ExtendedProduct("Kartoffelsalat", (float) 2.90));
+
+		//JointProduct SimpleProduct only:
+		
+		//JointProduct ExtendedProduct only:
+		
+		//CommandLine Menü:
+		while(end){
+			
+		    System.out.println("Menue\n");
+
+			Scanner scanner = new Scanner(System.in);
+		    int choice = scanner.nextInt();
+		    
+		    switch (choice) {
+		        case 1:
+	
+		            break;
+		        case 2:
+
+		            break;
+		        case 3:
+		  
+		            break;
+		        case 4:
+		            end=false;
+		            break;
+		        default:
+
+		    }
 	}
 
 	
 	
+	}
 }
