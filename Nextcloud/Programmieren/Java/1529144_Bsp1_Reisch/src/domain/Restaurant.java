@@ -80,19 +80,40 @@ public class Restaurant {
 		return false;
 	}
 
-	public List<IProduct> getProducts(){
-	/*Returns a list of copies of all IProducts in the assortment.
-	Returns:
-	a list of IProducts
-	*/
-	return this.Li_Pro; 
+	public List<IProduct> getProducts(){	
+	List<IProduct> list = new ArrayList<IProduct>();
+	
+	for( Iterator<IProduct> iterator = this.Li_Pro.iterator(); iterator.hasNext(); ){
+		list.add(iterator.next());
+	}
+		return list; 
 	}
 
 	public boolean orderProductForTable(Table table, IProduct product){
+		if( table!=null || product != null)
+			return false;
+		else if(this.Li_Pro.contains(product) && !this.Li_Tab.contains(table)){
+			List<IProduct> list = new ArrayList<IProduct>();
+			list.add(product);
+			Order newOrder = new Order(this.Orderid++ , table ,  list);
+			Li_Ord.add(newOrder);
+			return true;
+		}
 		return false;
 	}
 
-
+	public boolean orderProductForTable(Table table, IProduct product, int count){
+		if( table!=null || product != null || count != 0)
+			return false;
+		else if(this.Li_Pro.contains(product) && !this.Li_Tab.contains(table)){
+			List<IProduct> list = new ArrayList<IProduct>();
+			list.add(product);
+			Order newOrder = new Order(this.Orderid++ , table ,  list);
+			Li_Ord.add(newOrder);
+			return true;
+		}
+		return false;
+	}
 
 
 }
