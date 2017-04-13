@@ -258,6 +258,7 @@ public class Restaurant {
 		rest1.Li_Pro.add(JPEP);
 		
 		//	Create at least 2 JointProduct containing JointProduct:
+		rest1.Li_Pro.addAll(rest1.generateJointProducts());
 		//	Try to add a duplicate IProduct:
 		
 		// 	Create 3 Tables:
@@ -265,23 +266,27 @@ public class Restaurant {
 		Table T2 = new Table("T2",6);
 		Table T3 = new Table("T3",8);
 
+		// at least 2 Orders per Table
+		
 		//orderProductForTable(Table table, IProduct product):
 		rest1.orderProductForTable(T1,rest1.findProduct("Risotto"));
 		rest1.orderProductForTable(T2,rest1.findProduct("Milchreis"));
+		rest1.orderProductForTable(T3, rest1.findProduct("Kartoffelsalat"));
 
 		//orderProductForTable(Table table, IProduct product, int count):
 		rest1.orderProductForTable(T1,rest1.findProduct("OnlyEP"), 5);
 		rest1.orderProductForTable(T2,rest1.findProduct("OnlySP"), 5); //Geht ned
+		rest1.orderProductForTable(T3,rest1.findProduct("OnlyEP"), 5);
+
 		
 		System.out.println(rest1.Li_Ord);
 		//CommandLine Menü:
-		while(end){
+		while(end){	
 			
 			System.out.println("Menue");
-			System.out.println("Menue");
-			System.out.println("Menue");
-			System.out.println("Menue");
-			System.out.println("Menue");
+			System.out.println("1.		Producktsuche");
+			System.out.println("2.		Produkt hinzufügen");
+			System.out.println("3.		Beenden");
 			
 			
 			Scanner scanner = new Scanner(System.in);
@@ -289,18 +294,25 @@ public class Restaurant {
 		    
 		    switch (choice) {
 		        case 1:
-	
+		        	System.out.println("Nach welchem Produkt möchten Sie suchen?");
+				    String eingabe = scanner.next();
+				    System.out.print(rest1.findProduct(eingabe));
 		            break;
+		            
 		        case 2:
+		        	System.out.println("Wie soll das neue Produkt heißen?");
+				    String name = scanner.next();
+		        	System.out.println("Wie viel so das neue Produkt kosten?");
+				    int price = scanner.nextInt();
+					rest1.Li_Pro.add(new SimpleProduct(name, price));
+				    
+				    break;
 
-		            break;
 		        case 3:
-		  
-		            break;
-		        case 4:
 		            end=false;
 		            break;
 		        default:
+		        	System.out.println("Falsche Eingabe!");
 
 		    }
 	}
