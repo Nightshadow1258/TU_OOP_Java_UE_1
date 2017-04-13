@@ -95,7 +95,7 @@ public class Restaurant {
 	}
 
 	public boolean orderProductForTable(Table table, IProduct product){
-		if( table!=null || product != null)
+		if( table ==null || product == null)
 			return false;
 		else if(this.Li_Pro.contains(product) && !this.Li_Tab.contains(table)){
 			List<IProduct> list = new ArrayList<IProduct>();
@@ -108,9 +108,9 @@ public class Restaurant {
 	}
 
 	public boolean orderProductForTable(Table table, IProduct product, int count){
-		if( table!=null || product != null || count != 0)
+		if(  table==null || product == null || count == 0)
 			return false;
-		else if(this.Li_Pro.contains(product) && !this.Li_Tab.contains(table)){
+		else if(this.Li_Pro.contains(product) && !(this.Li_Tab.contains(table))){
 			List<IProduct> list = new ArrayList<IProduct>();
 			list.add(product);
 			Order newOrder = new Order(this.Orderid++ , table ,  list);
@@ -210,12 +210,20 @@ public class Restaurant {
 		jointprod.add(jpl3); 
 		return jointprod;
 	}
+	
+	public boolean debugging (Table table, IProduct product){
+
+		if(this.Li_Tab.contains(table))
+			return true;
+		else 
+			return false; 
+	}
+	
 
 	public static void main(String[] args){
 		
 		boolean end = true;
 		Restaurant rest1 = new Restaurant("Test_Restaurant");
-		System.out.println(rest1.generateJointProducts());
 		
 		//5xSimpleProduct:
 		rest1.Li_Pro.add(new SimpleProduct("Fleischlaberl", (float) 4.90));
@@ -232,14 +240,50 @@ public class Restaurant {
 		rest1.Li_Pro.add(new ExtendedProduct("Kartoffelsalat", (float) 2.90));
 
 		//JointProduct SimpleProduct only:
+		JointProduct JPSP = new JointProduct("OnlySP", 10);
+		
+		JPSP.addProduct(new SimpleProduct("Fleischlaberl klein", (float) 3.90));
+		JPSP.addProduct(new SimpleProduct("Fleischlaberl groß", (float) 4.90));
+		JPSP.addProduct(new SimpleProduct("Fleischlaberl large", (float) 6.90));
+		
+		rest1.Li_Pro.add(JPSP);
 		
 		//JointProduct ExtendedProduct only:
+		JointProduct JPEP = new JointProduct("OnlyEP", 15);
+
+		JPEP.addProduct(new ExtendedProduct("200g Steak", (float) 9.90));
+		JPEP.addProduct(new ExtendedProduct("300g Steak", (float) 15.90));
+		JPEP.addProduct(new ExtendedProduct("450g Steak", (float) 19.90));
+
+		rest1.Li_Pro.add(JPEP);
 		
+		//	Create at least 2 JointProduct containing JointProduct:
+		//	Try to add a duplicate IProduct:
+		
+		// 	Create 3 Tables:
+		Table T1 = new Table("T1",4);
+		Table T2 = new Table("T2",6);
+		Table T3 = new Table("T3",8);
+
+		//orderProductForTable(Table table, IProduct product):
+		rest1.orderProductForTable(T1,rest1.findProduct("Risotto"));
+		rest1.orderProductForTable(T2,rest1.findProduct("Milchreis"));
+
+		//orderProductForTable(Table table, IProduct product, int count):
+		rest1.orderProductForTable(T1,rest1.findProduct("OnlyEP"), 5);
+		rest1.orderProductForTable(T2,rest1.findProduct("OnlySP"), 5); //Geht ned
+		
+		System.out.println(rest1.Li_Ord);
 		//CommandLine Menü:
 		while(end){
 			
-		    System.out.println("Menue\n");
-
+			System.out.println("Menue");
+			System.out.println("Menue");
+			System.out.println("Menue");
+			System.out.println("Menue");
+			System.out.println("Menue");
+			
+			
 			Scanner scanner = new Scanner(System.in);
 		    int choice = scanner.nextInt();
 		    
