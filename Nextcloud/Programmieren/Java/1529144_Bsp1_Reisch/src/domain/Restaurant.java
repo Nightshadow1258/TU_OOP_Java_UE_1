@@ -75,14 +75,14 @@ public class Restaurant {
 		for (Iterator<IProduct> iterator = products.iterator(); iterator.hasNext();) {
 			IProduct Ip = iterator.next();
 			if (Ip == null)
-				
-			if (containsProduct(Ip))
-				throw new DuplicateProductException(Ip);
-			
-			else{
-				this.Li_Pro.add(Ip);
-				return true;
-			}
+
+				if (containsProduct(Ip))
+					throw new DuplicateProductException(Ip);
+
+				else {
+					this.Li_Pro.add(Ip);
+					return true;
+				}
 		}
 		return false;
 	}
@@ -152,6 +152,7 @@ public class Restaurant {
 		simpleprod.add(new SimpleProduct("Pommes", (float) 2.90));
 		simpleprod.add(new SimpleProduct("Salat", (float) 3.90));
 
+		System.out.println(simpleprod);
 		return simpleprod;
 	}
 
@@ -211,12 +212,12 @@ public class Restaurant {
 		jpl1.addProduct(jp1);
 		jpl1.addProduct(vs1);
 		jpl1.addProduct(ns1);
-		
+
 		JointProduct jpl2 = new JointProduct("Menü 2", 5);
 		jpl2.addProduct(jp2);
 		jpl2.addProduct(vs2);
 		jpl2.addProduct(ns2);
-		
+
 		JointProduct jpl3 = new JointProduct("Menü 3", 5);
 		jpl3.addProduct(jp3);
 		jpl3.addProduct(vs3);
@@ -229,7 +230,6 @@ public class Restaurant {
 		return jointprod;
 	}
 
-
 	public static void main(String[] args) throws DuplicateProductException {
 
 		boolean end = true;
@@ -239,7 +239,6 @@ public class Restaurant {
 		rest1.addProduct(new SimpleProduct("Fleischlaberl", (float) 4.90));
 
 		rest1.addProduct(new SimpleProduct("Bananenmilchshake", (float) 2.50));
-		System.out.println("hallo");
 		rest1.addProduct(new SimpleProduct("Schokomilchshake", (float) 2.50));
 		rest1.addProduct(new SimpleProduct("Risotto", (float) 5.90));
 		rest1.addProduct(new SimpleProduct("Spaghetti Bolognese", (float) 5.90));
@@ -266,15 +265,14 @@ public class Restaurant {
 		JPEP.addProduct(new ExtendedProduct("200g Steak", (float) 9.90));
 		JPEP.addProduct(new ExtendedProduct("300g Steak", (float) 15.90));
 		JPEP.addProduct(new ExtendedProduct("450g Steak", (float) 19.90));
-		
+
 		rest1.addProduct(JPEP);
 
 		// Create at least 2 JointProduct containing JointProduct:
-		 rest1.addProduct(rest1.generateJointProducts());
 		// Try to add a duplicate IProduct:
-		// rest1.addProduct(new SimpleProduct("Fleischlaberl", (float) 4.90)); //should invoke an Error
-		 rest1.addProduct(rest1.generateSimpleProducts());
-		
+		// rest1.addProduct(new SimpleProduct("Fleischlaberl", (float) 4.90));
+		// //should invoke an Error
+
 		// Create 3 Tables:
 		Table T1 = new Table("T1", 4);
 		Table T2 = new Table("T2", 6);
@@ -289,7 +287,7 @@ public class Restaurant {
 
 		// orderProductForTable(Table table, IProduct product, int count):
 		rest1.orderProductForTable(T1, rest1.findProduct("OnlyEP"), 5);
-		rest1.orderProductForTable(T2, rest1.findProduct("OnlySP"), 5);																		
+		rest1.orderProductForTable(T2, rest1.findProduct("OnlySP"), 5);
 		rest1.orderProductForTable(T3, rest1.findProduct("OnlyEP"), 5);
 
 		System.out.println(rest1.Li_Ord); // CommandLine Menü:
@@ -308,7 +306,11 @@ public class Restaurant {
 			case 1:
 				System.out.println("Nach welchem Produkt möchten Sie suchen?");
 				String eingabe = scanner.next();
-				System.out.print(rest1.findProduct(eingabe));
+				if (rest1.findProduct(eingabe) != null)
+					System.out.print(rest1.findProduct(eingabe));
+				else
+					System.out.println("Nicht gefunden!");
+
 				break;
 
 			case 2:
@@ -323,11 +325,10 @@ public class Restaurant {
 			case 3:
 				end = false;
 				break;
-
-			case 4:
-				System.out.println(rest1.getProducts());
-				break;
-
+			/*
+			 * case 4: System.out.println(rest1.getProducts());
+			 *  break;
+			 */
 			default:
 				System.out.println("Falsche Eingabe!");
 

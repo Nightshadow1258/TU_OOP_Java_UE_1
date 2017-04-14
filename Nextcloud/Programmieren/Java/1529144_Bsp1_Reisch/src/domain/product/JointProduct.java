@@ -68,7 +68,7 @@ public class JointProduct extends Product{
 	public String toString(){
 		
 	//return "JointProduct: [Name= " + this.name + ", Price= " + this.getPrice() + ", Discount: " + this.discountpercentage + "]";
-		String s = "JointProduct [Name: "+this.name+", Price: "+this.price+","
+		String s = "JointProduct [Name: "+this.name+", Price: "+this.getPrice() +","
 			    + "Discount Percentage: "+this.discountpercentage+", Liste: "
 			    + Liste + "]";
 	return s;
