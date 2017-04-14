@@ -301,10 +301,10 @@ public class Restaurant {
 		rest1.orderProductForTable(rest1.getSpecificTable("T3"), rest1.findProduct("OnlyEP"), 5);
 
 		System.out.println(rest1.Li_Ord);
-		
+
 		for (Iterator<Order> iterator = rest1.Li_Ord.iterator(); iterator.hasNext();) {
 			Order test = iterator.next();
-			System.out.println( test.getProducts());
+			System.out.println(test.getProducts());
 		}
 		// CommandLine Menü:
 
@@ -341,9 +341,21 @@ public class Restaurant {
 			case 3:
 				end = false;
 				break;
+
 			/*
 			 * case 4: System.out.println(rest1.getProducts()); break;
 			 */
+
+			case 5:
+				ExtendedProduct Ep = new ExtendedProduct("TestEP", (float) 5);
+				System.out.println(Ep);
+				Ep.setName("EpTest");
+				Ep.setPrice((float) 10);
+				System.out.println(Ep);
+				Ep.undo();
+				System.out.println(Ep);
+				break;
+
 			default:
 				System.out.println("Falsche Eingabe!");
 

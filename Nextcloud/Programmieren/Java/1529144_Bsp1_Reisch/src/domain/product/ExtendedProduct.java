@@ -35,7 +35,7 @@ public class ExtendedProduct extends SimpleProduct {
 	}
 	
 	public boolean undo(){
-// not done
+
 		if(this.name != this.lastState.name) {
 			this.setName(this.lastState.name);
 			return true;
