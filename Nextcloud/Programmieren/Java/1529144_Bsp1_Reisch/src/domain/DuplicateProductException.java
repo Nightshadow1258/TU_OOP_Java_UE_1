@@ -9,7 +9,7 @@ import domain.product.IProduct;
 
 public class DuplicateProductException extends Exception{
 
-	private static final long serialVersionUID = 1L; //warum?
+		private static final long serialVersionUID = 1L; //warum?
 	
 	private IProduct duplicateproduct;
 	
