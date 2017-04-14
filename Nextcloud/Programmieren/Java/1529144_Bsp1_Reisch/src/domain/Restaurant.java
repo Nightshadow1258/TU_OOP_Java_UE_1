@@ -41,10 +41,11 @@ public class Restaurant {
 
 	public boolean createTable(String tableIdentifier) {
 		for (Iterator<Table> iterator = this.Li_Tab.iterator(); iterator.hasNext();) {
-			if (iterator.next().getTableIdentifier() == tableIdentifier)
+			Table it = iterator.next();
+			if (it.getTableIdentifier() == tableIdentifier)
 				return false;
 		}
-		Li_Tab.add(new Table(tableIdentifier));
+		this.Li_Tab.add(new Table(tableIdentifier));
 		return true;
 	}
 
@@ -99,7 +100,7 @@ public class Restaurant {
 	public boolean orderProductForTable(Table table, IProduct product) {
 		if (table == null || product == null)
 			return false;
-		else if (this.Li_Pro.contains(product) && !this.Li_Tab.contains(table)) {
+		else if (this.Li_Pro.contains(product) && this.Li_Tab.contains(table)) {
 			List<IProduct> list = new ArrayList<IProduct>();
 			list.add(product);
 			Order newOrder = new Order(this.Orderid++, table, list);
@@ -112,9 +113,10 @@ public class Restaurant {
 	public boolean orderProductForTable(Table table, IProduct product, int count) {
 		if (table == null || product == null || count == 0)
 			return false;
-		else if (this.Li_Pro.contains(product) && !(this.Li_Tab.contains(table))) {
+		else if (this.Li_Pro.contains(product) && this.Li_Tab.contains(table)) {
 			List<IProduct> list = new ArrayList<IProduct>();
-			list.add(product);
+			for (int i = 0; i < count; i++)
+				list.add(product);
 			Order newOrder = new Order(this.Orderid++, table, list);
 			Li_Ord.add(newOrder);
 			return true;
@@ -274,23 +276,37 @@ public class Restaurant {
 		// //should invoke an Error
 
 		// Create 3 Tables:
-		Table T1 = new Table("T1", 4);
-		Table T2 = new Table("T2", 6);
-		Table T3 = new Table("T3", 8);
+		/*
+		 * Table T1 = new Table("T1", 4); Table T2 = new Table("T2", 6); Table
+		 * T3 = new Table("T3", 8);
+		 */
 
+		rest1.createTable("T1");
+		rest1.createTable("T2");
+		rest1.createTable("T3");
+		System.out.println(rest1.Li_Tab);
+
+		// System.out.println(rest1.findProduct("Risotto"));
+		// System.out.print(rest1.getSpecificTable("T1"));
 		// at least 2 Orders per Table
 
 		// orderProductForTable(Table table, IProduct product):
-		rest1.orderProductForTable(T1, rest1.findProduct("Risotto"));
-		rest1.orderProductForTable(T2, rest1.findProduct("Milchreis"));
-		rest1.orderProductForTable(T3, rest1.findProduct("Kartoffelsalat"));
+		rest1.orderProductForTable(rest1.getSpecificTable("T1"), rest1.findProduct("Risotto"));
+		rest1.orderProductForTable(rest1.getSpecificTable("T2"), rest1.findProduct("Milcheis"));
+		rest1.orderProductForTable(rest1.getSpecificTable("T3"), rest1.findProduct("Kartoffelsalat"));
 
 		// orderProductForTable(Table table, IProduct product, int count):
-		rest1.orderProductForTable(T1, rest1.findProduct("OnlyEP"), 5);
-		rest1.orderProductForTable(T2, rest1.findProduct("OnlySP"), 5);
-		rest1.orderProductForTable(T3, rest1.findProduct("OnlyEP"), 5);
+		rest1.orderProductForTable(rest1.getSpecificTable("T1"), rest1.findProduct("OnlyEP"), 5);
+		rest1.orderProductForTable(rest1.getSpecificTable("T2"), rest1.findProduct("OnlySP"), 5);
+		rest1.orderProductForTable(rest1.getSpecificTable("T3"), rest1.findProduct("OnlyEP"), 5);
 
-		System.out.println(rest1.Li_Ord); // CommandLine Menü:
+		System.out.println(rest1.Li_Ord);
+		
+		for (Iterator<Order> iterator = rest1.Li_Ord.iterator(); iterator.hasNext();) {
+			Order test = iterator.next();
+			System.out.println( test.getProducts());
+		}
+		// CommandLine Menü:
 
 		while (end) {
 
@@ -326,8 +342,7 @@ public class Restaurant {
 				end = false;
 				break;
 			/*
-			 * case 4: System.out.println(rest1.getProducts());
-			 *  break;
+			 * case 4: System.out.println(rest1.getProducts()); break;
 			 */
 			default:
 				System.out.println("Falsche Eingabe!");

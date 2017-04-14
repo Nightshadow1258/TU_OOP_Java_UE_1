@@ -25,7 +25,7 @@ public class Table extends Object {
 	
 	public int getSeatCount(){
 		return this.seats;
-	}	
+	}		
 	
 	public String getTableIdentifier(){
 		return this.identifier;
