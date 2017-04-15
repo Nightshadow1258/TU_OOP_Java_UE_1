@@ -8,7 +8,5 @@ package domain.record;
 public interface IRecord {
 
 	long getIdentifier();
-	
-	
-}
 
+}

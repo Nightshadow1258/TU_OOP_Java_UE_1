@@ -5,18 +5,17 @@
 
 package domain.product;
 
-public class SimpleProduct extends Product{
+public class SimpleProduct extends Product {
 
-	//Konstruktoren:
+	// Konstruktoren:
 	public SimpleProduct(String name, float price) {
-		super(name, price); //super verwendet den Konstruktor Körper von der Superklasse
+		super(name, price); // super verwendet den Konstruktor Körper von der
+							// Superklasse
 	}
 
 	@Override
 	public Product deepCopy() {
 		return new SimpleProduct(name, price);
 	}
-	
-	
-}
 
+}

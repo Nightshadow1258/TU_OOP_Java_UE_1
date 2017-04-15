@@ -332,9 +332,9 @@ public class Restaurant {
 				System.out.println("Wie soll das neue Produkt heiﬂen?");
 				String name = scanner.next();
 				System.out.println("Wie viel so das neue Produkt kosten?");
-				int price = scanner.nextInt();
+				float price = scanner.nextFloat();
 				rest1.addProduct(new SimpleProduct(name, price));
-
+				System.out.println(rest1.findProduct(name));
 				break;
 
 			case 3:

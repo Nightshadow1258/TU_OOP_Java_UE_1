@@ -27,10 +27,10 @@ public class ExtendedProduct extends SimpleProduct {
 	}
 
 	@Override
-	public void setPrice(float price) throws IllegalArgumentException{
+	public void setPrice(float price) throws IllegalArgumentException {
 		lastState = new ExtendedProduct(this.name, this.price);
-		if(price<0)
-			throw new IllegalArgumentException("Preis kleiner als 0");
+		if (price < 0)
+			throw new IllegalArgumentException("Price below zero! entered value: " + price);
 		else
 			this.price = price;
 	}

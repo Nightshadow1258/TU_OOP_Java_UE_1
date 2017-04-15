@@ -5,20 +5,21 @@
  */
 
 package domain;
+
 import domain.product.IProduct;
 
-public class DuplicateProductException extends Exception{
+public class DuplicateProductException extends Exception {
 
-		private static final long serialVersionUID = 1L; //warum?
-	
+	private static final long serialVersionUID = 1L; // warum?
+
 	private IProduct duplicateproduct;
-	
-	public DuplicateProductException(IProduct product){
+
+	public DuplicateProductException(IProduct product) {
 		this.duplicateproduct = product;
 	}
-	
-	public String getMessage(){
-		return "Product " + duplicateproduct.getName()+ " already exists!";
+
+	public String getMessage() {
+		return "Product " + duplicateproduct.getName() + " already exists!";
 	}
-	
+
 }

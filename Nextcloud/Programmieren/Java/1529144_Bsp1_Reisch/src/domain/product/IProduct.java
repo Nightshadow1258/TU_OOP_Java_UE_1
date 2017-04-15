@@ -17,13 +17,11 @@ import ict.basics.IDeepCopy;
  * Methodendeklarationen
 */
 
-public interface IProduct extends IDeepCopy{
+public interface IProduct extends IDeepCopy {
 
-	
-	
-	//Methoden nur Deklartationen im Interface
+	// Methoden nur Deklartationen im Interface
 	public String getName();
-	
+
 	float getPrice();
-	
+
 }
