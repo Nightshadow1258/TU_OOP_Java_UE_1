@@ -272,17 +272,16 @@ public class Restaurant {
 
 		// Create at least 2 JointProduct containing JointProduct:
 		rest1.addProduct(Restaurant.generateJointProducts());
-		
+
 		// Try to add a duplicate IProduct:
 		// rest1.addProduct(new SimpleProduct("Fleischlaberl", (float) 4.90));
 		// //should invoke an Error
-
 
 		// Create 3 Tables:
 		rest1.createTable("T1");
 		rest1.createTable("T2");
 		rest1.createTable("T3");
-		//System.out.println(rest1.Li_Tab);
+		// System.out.println(rest1.Li_Tab);
 
 		// System.out.println(rest1.findProduct("Risotto"));
 		// System.out.print(rest1.getSpecificTable("T1"));
@@ -298,14 +297,14 @@ public class Restaurant {
 		rest1.orderProductForTable(rest1.getSpecificTable("T2"), rest1.findProduct("OnlySP"), 5);
 		rest1.orderProductForTable(rest1.getSpecificTable("T3"), rest1.findProduct("OnlyEP"), 5);
 
-		//System.out.println(rest1.Li_Ord);
+		// System.out.println(rest1.Li_Ord);
 
-		
-		/*for (Iterator<Order> iterator = rest1.Li_Ord.iterator(); iterator.hasNext();) {
-			Order test = iterator.next();
-			System.out.println(test.getProducts());
-		}*/
-		
+		/*
+		 * for (Iterator<Order> iterator = rest1.Li_Ord.iterator();
+		 * iterator.hasNext();) { Order test = iterator.next();
+		 * System.out.println(test.getProducts()); }
+		 */
+
 		// CommandLine Menü:
 
 		while (end) {
@@ -346,17 +345,27 @@ public class Restaurant {
 			 * case 4: System.out.println(rest1.getProducts()); break;
 			 */
 
-			/*	Undo() test
-			 	case 5:
-				ExtendedProduct Ep = new ExtendedProduct("TestEP", (float) 5.9);
-				System.out.println(Ep);
-				Ep.setName("EpTest");
-				System.out.println(Ep);
-				Ep.undo();
-				System.out.println(Ep);
-				break;	
-			*/
-				
+			// Undo() test:
+			/*
+			 * case 5:
+			 * 
+			 * ExtendedProduct Ep = new ExtendedProduct("TestEP", (float) 5.9);
+			 * System.out.println(Ep); System.out.println(Ep.undo());
+			 * Ep.setName("EpTest"); System.out.println(Ep); Ep.undo();
+			 * System.out.println(Ep); Ep.setPrice(-5); break;
+			 */
+
+			/*
+			 * //setOrderState test: case 6:
+			 * System.out.println(rest1.Li_Ord.get(2));
+			 * rest1.Li_Ord.get(2).setState(OrderState.PAID);
+			 * System.out.println(rest1.Li_Ord.get(2).isPaid());
+			 * rest1.Li_Ord.get(2).setState(OrderState.CANCELLED);
+			 * System.out.println(rest1.Li_Ord.get(2).isCancelled());
+			 * 
+			 * break;
+			 */
+
 			default:
 				System.out.println("Falsche Eingabe!");
 

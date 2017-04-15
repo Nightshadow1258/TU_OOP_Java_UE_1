@@ -17,12 +17,11 @@ public class Order extends Record implements IDeepCopy{
 	
 	protected Table table;	
 	protected List<IProduct> products = new ArrayList<IProduct>();
-	protected OrderState status;
+	protected OrderState status = OrderState.OPEN;
 	
 	public Order(long identifier, Table table, List<IProduct> products){
 		super(identifier);
 		this.table = table;
-		this.status = OrderState.OPEN;
 		this.products.addAll(products);
 	}
 		
