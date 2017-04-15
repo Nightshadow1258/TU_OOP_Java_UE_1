@@ -22,6 +22,7 @@ public class Order extends Record implements IDeepCopy{
 	public Order(long identifier, Table table, List<IProduct> products){
 		super(identifier);
 		this.table = table;
+		this.status = OrderState.OPEN;
 		this.products.addAll(products);
 	}
 		

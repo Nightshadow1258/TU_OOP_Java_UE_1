@@ -271,20 +271,18 @@ public class Restaurant {
 		rest1.addProduct(JPEP);
 
 		// Create at least 2 JointProduct containing JointProduct:
+		rest1.addProduct(Restaurant.generateJointProducts());
+		
 		// Try to add a duplicate IProduct:
 		// rest1.addProduct(new SimpleProduct("Fleischlaberl", (float) 4.90));
 		// //should invoke an Error
 
-		// Create 3 Tables:
-		/*
-		 * Table T1 = new Table("T1", 4); Table T2 = new Table("T2", 6); Table
-		 * T3 = new Table("T3", 8);
-		 */
 
+		// Create 3 Tables:
 		rest1.createTable("T1");
 		rest1.createTable("T2");
 		rest1.createTable("T3");
-		System.out.println(rest1.Li_Tab);
+		//System.out.println(rest1.Li_Tab);
 
 		// System.out.println(rest1.findProduct("Risotto"));
 		// System.out.print(rest1.getSpecificTable("T1"));
@@ -300,12 +298,14 @@ public class Restaurant {
 		rest1.orderProductForTable(rest1.getSpecificTable("T2"), rest1.findProduct("OnlySP"), 5);
 		rest1.orderProductForTable(rest1.getSpecificTable("T3"), rest1.findProduct("OnlyEP"), 5);
 
-		System.out.println(rest1.Li_Ord);
+		//System.out.println(rest1.Li_Ord);
 
-		for (Iterator<Order> iterator = rest1.Li_Ord.iterator(); iterator.hasNext();) {
+		
+		/*for (Iterator<Order> iterator = rest1.Li_Ord.iterator(); iterator.hasNext();) {
 			Order test = iterator.next();
 			System.out.println(test.getProducts());
-		}
+		}*/
+		
 		// CommandLine Menü:
 
 		while (end) {
