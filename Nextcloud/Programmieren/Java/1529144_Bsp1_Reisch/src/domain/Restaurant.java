@@ -346,16 +346,17 @@ public class Restaurant {
 			 * case 4: System.out.println(rest1.getProducts()); break;
 			 */
 
-			case 5:
-				ExtendedProduct Ep = new ExtendedProduct("TestEP", (float) 5);
+			/*	Undo() test
+			 	case 5:
+				ExtendedProduct Ep = new ExtendedProduct("TestEP", (float) 5.9);
 				System.out.println(Ep);
 				Ep.setName("EpTest");
-				Ep.setPrice((float) 10);
 				System.out.println(Ep);
 				Ep.undo();
 				System.out.println(Ep);
-				break;
-
+				break;	
+			*/
+				
 			default:
 				System.out.println("Falsche Eingabe!");
 

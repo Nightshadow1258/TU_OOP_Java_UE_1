@@ -21,27 +21,30 @@ public class ExtendedProduct extends SimpleProduct {
 	
 	@Override
 	public void setName(String name){
-		lastState.setName(name);
-		this.setName(name);
+		lastState = new ExtendedProduct(this.name,this.price);
+		this.name=name;
 	}
 	
 	@Override
 	public void setPrice(float price){
-		this.setPrice(price);
+		lastState = new ExtendedProduct(this.name,this.price);
+		this.price = price;
 	}
 	
 	public String toString(){
-		return "ExtendedProduct: [Name= " + this.name + ", Price= " + this.name + "]";
+		return "ExtendedProduct: [Name= " + this.name + ", Price= " + this.price + "]";
 	}
 	
 	public boolean undo(){
 
 		if(this.name != this.lastState.name) {
-			this.setName(this.lastState.name);
+			System.out.println(1);
+			this.name = this.lastState.name;
 			return true;
 		}
-		if(this.price != this.lastState.price){
-			this.setPrice(this.lastState.price);
+		else if(this.price != this.lastState.price){
+			System.out.println(2);
+			this.price = this.lastState.price;
 			return true;
 		}
 		else

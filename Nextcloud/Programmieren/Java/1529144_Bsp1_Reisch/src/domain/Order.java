@@ -5,6 +5,7 @@
 
 package domain;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import domain.product.IProduct;
@@ -27,7 +28,13 @@ public class Order extends Record implements IDeepCopy{
 	//Methoden
 	public List<IProduct> getProducts(){
 
-		return this.products;
+		List<IProduct> copies = new ArrayList<IProduct>();
+
+		for (Iterator<IProduct> iterator = this.products.iterator(); iterator.hasNext();) {
+			IProduct buffer = iterator.next();
+			copies.add( (IProduct) buffer.deepCopy());
+		}
+		return copies;
 	}
 	
 	public boolean setState(OrderState newStatus){
