@@ -28,13 +28,7 @@ public class Order extends Record implements IDeepCopy {
 	// Methoden
 	public List<IProduct> getProducts() {
 
-		List<IProduct> copies = new ArrayList<IProduct>();
-
-		for (Iterator<IProduct> iterator = this.products.iterator(); iterator.hasNext();) {
-			IProduct buffer = iterator.next();
-			copies.add((IProduct) buffer.deepCopy());
-		}
-		return copies;
+		return deepCopy().products;
 	}
 
 	public boolean setState(OrderState newStatus) {
@@ -65,7 +59,7 @@ public class Order extends Record implements IDeepCopy {
 	}
 
 	public Order deepCopy() {
-		Order copy = new Order(this.getIdentifier(), this.getTable(), this.getProducts());
+		Order copy = new Order(this.getIdentifier(), this.table, this.products);
 		copy.setState(this.status);
 		return copy;
 	}

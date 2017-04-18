@@ -40,11 +40,13 @@ public class JointProduct extends Product {
 	// Methoden
 	public void addProduct(Product product) {
 		Liste.add(product);
+		price = getPrice();
 	}
 
 	public boolean removeProduct(Product product) {
 		if (Liste.contains(product)) {
 			Liste.remove(product);
+			price = getPrice();
 			return true;
 		} else
 			return false;
@@ -69,7 +71,7 @@ public class JointProduct extends Product {
 
 		// return "JointProduct: [Name= " + this.name + ", Price= " +
 		// this.getPrice() + ", Discount: " + this.discountpercentage + "]";
-		String s = "JointProduct [Name: " + this.name + ", Price: " + this.getPrice() + "," + "Discount Percentage: "
+		String s = "JointProduct [Name: " + this.name + ", Price: " + this.price + "," + "Discount Percentage: "
 				+ this.discountpercentage + ", Liste: " + Liste + "]";
 		return s;
 	}
